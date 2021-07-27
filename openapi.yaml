@@ -390,7 +390,7 @@ paths:
             type: integer
             format: int64
       responses:
-        "400":
+        "201":
           description: Created Success
       requestBody:
         content:
@@ -405,3 +405,39 @@ paths:
                 createdAt:
                   type: string
                   format: date-time
+  /books/{bookId}/reviews/{reviewId}/comments/{commentId}:
+    patch:
+      summary: modify comment.
+      description: request bookId, reviewId,commentId.
+      tags:
+        - comment
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+            format: int64
+        - name: commentId
+          in: path
+          required: true
+          description: The Id of comment which comment have
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "201":
+          description: modified success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
