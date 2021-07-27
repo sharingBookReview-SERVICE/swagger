@@ -347,7 +347,12 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Review"
+              type: object
+              properties:
+                liked_users:
+                  type: array
+                  items:
+                    type: string
 
 
           in: path
