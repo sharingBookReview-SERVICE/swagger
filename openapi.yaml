@@ -1,0 +1,206 @@
+openapi: 3.0.3
+info:
+  title: BNS
+  description: This is BSN project.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+tags:
+  - name: book
+    description: Everybook which have ISBN
+    externalDocs:
+      description: Find out more book
+      url: ’https://www.nl.go.kr/'
+  - name: review
+    description: reviews
+  - name: comment
+    description: Access to reviews
+  - name: user
+    description: Operations about user
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    User:
+      type: string
+    Comment:
+      type: string
+    Book:
+      type: object
+      properties:
+        isbn:
+          type: integer
+          format: int64
+        title:
+          type: string
+        link:
+          type: string
+        image:
+          type: string
+        author:
+          type: string
+        price:
+          type: integer
+        discout:
+          type: integer
+        description:
+          type: string
+        pubdate:
+          type: string
+          format: date
+      example:
+        isbn: "9791158392239"
+        title: "모던 자바스크립트 Deep Dive"
+        link: "http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158392239&orderClick=LAG&Kc="
+        image: "http://image.kyobobook.co.kr/images/book/large/239/l9791158392239.jpg"
+        author: "이웅모"
+        price: "45000"
+        discount: "0.1"
+        description: "269개의 그림과 원리를 파헤치는 설명으로 ‘자바스크립트의 기본 개념과 동작 원리’를 이해하자!\n웹페이지의 단순한 보조 기능을 처리하기 위한 제한적인 용도로 태어난 자바스크립트는 과도하다고 느껴질 만큼 친절한 프로그래밍 언어입니다. 이러한 자바스크립트의 특징은 편리한 경우도 있지만 내부 동작을 이해하기 어렵게 만들기도 합니다."
+        pubdate: "20200925"
+    Review:
+      type: object
+      properties:
+        id:
+          type: integer
+        user:
+          $ref: "#/components/schemas/User"
+        book:
+          $ref: "#/components/schemas/Book"
+        quote:
+          type: string
+        content:
+          type: string
+        hashtags:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        liked_users:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+      example:
+        id: "12345"
+        user: "23456"
+        book: "34567"
+        qutoe: "시간이 쏜살같다고 하는데 당신 시계엔 화살이 없소."
+        content: "너무너무 재밌다."
+        hashtags: [ "재밌음", "우울함" ]
+        created_at: "20210726"
+        comments: [ "1234", "2345" ]
+        liked_users: [ "1324", "2435" ]
+paths:
+  /books:
+    get:
+      summary: get booklist for search
+      description: request data using query in path
+      parameters:
+        - name: target
+          in: query
+          required: true
+          description: what kind of search target
+          schema:
+            type: string
+        - name: query
+          in: query
+          required: true
+          description: the value of search content
+          schema:
+            type: string
+      tags:
+        - book
+      responses:
+        "200":
+          description: response값
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /books/{bookId}:
+    get:
+      summary: get book for bookdetail
+      description: request data using bookId which has book
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+      tags:
+        - book
+      responses:
+        "200":
+          description: response값
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+  /books/bestseller:
+    get:
+      summary: get booklist for bestseller
+      description: do not need request
+      tags:
+        - book
+      responses:
+        "200":
+          description: response값
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /books/bookId/reviews:
+    get:
+      summary: get all reviews
+      description: do not need request
+      tags:
+        - review
+      responses:
+        "200":
+          description: response 값
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+  /books/{bookId}/reviews/{reviewId}:
+    get:
+      summary: get one review for review detail
+      description: request data using reviewId, bookId
+      tags:
+        - review
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: response 값
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
