@@ -471,3 +471,26 @@ paths:
       responses:
         "200":
           description: response success.
+  /users/{userId}/reviews:
+    get:
+      summary: Get user's reviews.
+      description: Returns a list of reviews written by the user.
+      tags:
+        - user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User's ID
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: response success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Review"
