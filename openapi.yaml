@@ -292,6 +292,8 @@ paths:
         - review
       parameters:
         - name: bookId
+          in: path
+          required: true
           description: The Id of book which review have
           schema:
             type: integer
@@ -354,6 +356,3 @@ paths:
                   items:
                     type: string
 
-
-          in: path
-          required: true
