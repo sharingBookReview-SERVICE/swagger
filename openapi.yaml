@@ -38,7 +38,26 @@ components:
         providerKey: "1234567890"
         provider: "kakao"
     Comment:
-      type: string
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        book:
+          $ref: "#/components/schemas/Book"
+        review:
+          $ref: "#/components/schemas/Review"
+        content:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      example:
+        user: "123456789"
+        book: "책의 isbn"
+        review: "리뷰의 아이디"
+        content: "하하하 너무 재밌다."
+        created_at: "20210727"
     Book:
       type: object
       properties:
