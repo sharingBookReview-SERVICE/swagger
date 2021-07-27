@@ -38,7 +38,15 @@ components:
         providerKey: "1234567890"
         provider: "kakao"
     Comment:
-      type: string
+      type: object
+      properties:
+        user:
+          $ref: "#/components/schemas/User"
+        content:
+          type: string
+        created_at:
+          type: string
+          format: date-time
     Book:
       type: object
       properties:
