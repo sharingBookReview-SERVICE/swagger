@@ -218,3 +218,31 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Review"
+  /books/{bookId}/reviews:
+    post:
+      summary: post the review
+      description: post new review
+      tags:
+        - review
+      parameters:
+        - name: bookId
+          description: The Id of book which review have
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid ID Supplied
+        "405":
+          description: Invalid input
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Review"
+
+
+
+          in: path
+          required: true
