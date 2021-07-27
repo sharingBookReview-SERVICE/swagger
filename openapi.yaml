@@ -10,7 +10,7 @@ tags:
     description: Everybook which have ISBN
     externalDocs:
       description: Find out more book
-      url: ’https://www.nl.go.kr/'
+      url: ’www.google.com'
   - name: review
     description: reviews
   - name: comment
