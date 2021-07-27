@@ -205,12 +205,14 @@ paths:
           description: The Id of book which review have
           schema:
             type: integer
+            format: int64
         - name: reviewId
           in: path
           required: true
           description: The Id of review which review have
           schema:
             type: integer
+            format: int64
       responses:
         "200":
           description: response 값
@@ -229,6 +231,7 @@ paths:
           description: The Id of book which review have
           schema:
             type: integer
+            format: int64
       responses:
         "200":
           description: Success
