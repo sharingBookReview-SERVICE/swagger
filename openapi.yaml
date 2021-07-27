@@ -220,10 +220,40 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Review"
+    put:
+      summary: put one review
+      description: request data using bookId, reviewId
+      tags:
+        - review
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+            format: int64
+      responses:
+            "400": 
+              description: Invalid Id Supplied
+            "404":
+              description: Review not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Review"
   /books/{bookId}/reviews:
     post:
       summary: post the review
-      description: post new review
+      description: request data using bookId
       tags:
         - review
       parameters:
