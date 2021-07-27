@@ -254,10 +254,10 @@ paths:
             type: integer
             format: int64
       responses:
-            "400": 
-              description: Invalid Id Supplied
-            "404":
-              description: Review not found
+        "400":
+          description: Invalid Id Supplied
+        "404":
+          description: Review not found
       requestBody:
         content:
           application/json:
@@ -266,9 +266,9 @@ paths:
               properties:
                 quote:
                   type: string
-                content: 
+                content:
                   type: string
-                hashtags: 
+                hashtags:
                   type: array
                   items:
                     type: string
@@ -276,7 +276,7 @@ paths:
       summary: delete one review
       description: request data using bookId, reviewId
       tags:
-      - review
+        - review
       parameters:
         - name: bookId
           in: path
@@ -293,7 +293,7 @@ paths:
             type: integer
             format: int64
       responses:
-        "400": 
+        "400":
           description: Invalid Id Supplied
         "404":
           description: Review not found
@@ -326,9 +326,9 @@ paths:
               properties:
                 quote:
                   type: string
-                content: 
+                content:
                   type: string
-                hashtags: 
+                hashtags:
                   type: array
                   items:
                     type: string
@@ -354,7 +354,7 @@ paths:
             type: integer
             format: int64
       responses:
-        "400": 
+        "400":
           description: Invalid Id Supplied
         "404":
           description: Review not found
@@ -368,4 +368,106 @@ paths:
                   type: array
                   items:
                     type: string
-
+  /books/{bookId}/reviews/{reviewId}/comments:
+    post:
+      summary: Create a book comment.
+      description: request bookId, reviewId.
+      tags:
+        - comment
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "201":
+          description: Created Success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                content:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+  /books/{bookId}/reviews/{reviewId}/comments/{commentId}:
+    patch:
+      summary: modify comment.
+      description: request bookId, reviewId,commentId.
+      tags:
+        - comment
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+            format: int64
+        - name: commentId
+          in: path
+          required: true
+          description: The Id of comment which comment have
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "201":
+          description: modified success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
+    delete:
+      summary: modify comment.
+      description: request bookId, reviewId,commentId.
+      tags:
+        - comment
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+            format: int64
+        - name: commentId
+          in: path
+          required: true
+          description: The Id of comment which comment have
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: response success.
