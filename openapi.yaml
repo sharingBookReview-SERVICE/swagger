@@ -543,6 +543,20 @@ paths:
       responses:
         "200":
           description: success
+  /login:
+    post:
+      tags:
+        - user
+      summary: login user (social login)
+      description: request permission code
+      responses:
+        default:
+          description: success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
   /users/{userId}/reviews:
     get:
       summary: Get user's reviews.
