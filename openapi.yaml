@@ -139,9 +139,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                $ref: "#/components/schemas/Book"
   /books/{bookId}:
     get:
       summary: get book for bookdetail
