@@ -471,6 +471,20 @@ paths:
       responses:
         "200":
           description: response success.
+  /users/{provider}:
+    post:
+      tags:
+        - user
+      summary: create user (social login)
+      description: request permission code
+      responses:
+        default:
+          description: success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
   /users/{userId}/reviews:
     get:
       summary: Get user's reviews.
