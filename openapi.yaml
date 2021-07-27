@@ -298,7 +298,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Review"
+              type: object
+              properties:
+                quote:
+                  type: string
+                content: 
+                  type: string
+                hashtags: 
+                  type: array
+                  items:
+                    type: string
   /books/{bookId}/reviews/{reviewId}/like:
     put:
       summary: change review property myLike and likes
