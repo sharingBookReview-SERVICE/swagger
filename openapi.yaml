@@ -158,9 +158,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                $ref: "#/components/schemas/Book"
   /books/{bookId}:
     get:
       summary: get book for bookdetail
@@ -193,9 +191,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                $ref: "#/components/schemas/Book"
   /books/bookId/reviews:
     get:
       summary: get all reviews
@@ -208,9 +204,7 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
+                $ref: "#/components/schemas/Review"
   /books/{bookId}/reviews/{reviewId}:
     get:
       summary: get one review for review detail
