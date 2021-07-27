@@ -441,3 +441,33 @@ paths:
           application/json:
             schema:
               type: string
+    delete:
+      summary: modify comment.
+      description: request bookId, reviewId,commentId.
+      tags:
+        - comment
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+            format: int64
+        - name: commentId
+          in: path
+          required: true
+          description: The Id of comment which comment have
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: response success.
