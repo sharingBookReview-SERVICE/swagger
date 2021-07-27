@@ -506,6 +506,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
+    put:
+      tags:
+      - user
+      summary: put user info
+      description: request data using userId
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The Id of user
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: success
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: string
   /users/{userId}/reviews:
     get:
       summary: Get user's reviews.
