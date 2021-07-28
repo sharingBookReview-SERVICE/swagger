@@ -508,6 +508,10 @@ paths:
                 properties:
                   token:
                     type: string
+                  userImage:
+                    type: string
+                  nickname:
+                    type: string
       requestBody:
         content:
           application/json:
