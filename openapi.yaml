@@ -192,12 +192,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Book"
-  /books/bookId/reviews:
+  /reviews:
     get:
       summary: get all reviews
       description: do not need request
       tags:
         - review
+      responses:
+        "200":
+          description: response 값
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+  /books/bookId/reviews:
+    get:
+      summary: get reviews which book have
+      description: request data using bookId
+      tags:
+        - review
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
       responses:
         "200":
           description: response 값
@@ -478,8 +499,19 @@ paths:
       summary: create user (social login)
       description: request permission code
       responses:
-        default:
-          description: success
+        "200":
+          description: success to login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  userImage:
+                    type: string
+                  nickname:
+                    type: string
       requestBody:
         content:
           application/json:
@@ -526,7 +558,10 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              type: object
+              properties:
+                nickname:
+                  type: string
     delete:
       tags:
         - user
@@ -543,20 +578,6 @@ paths:
       responses:
         "200":
           description: success
-  /login:
-    post:
-      tags:
-        - user
-      summary: login user (social login)
-      description: request permission code
-      responses:
-        default:
-          description: success
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: string
   /users/{userId}/reviews:
     get:
       summary: Get user's reviews.
