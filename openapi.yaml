@@ -205,6 +205,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Review"
+  /books/bookId/reviews:
+    get:
+      summary: get reviews which book have
+      description: request data using bookId
+      tags:
+        - review
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: response 값
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
   /books/{bookId}/reviews/{reviewId}:
     get:
       summary: get one review for review detail
