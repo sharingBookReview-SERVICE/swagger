@@ -478,8 +478,15 @@ paths:
       summary: create user (social login)
       description: request permission code
       responses:
-        default:
-          description: success
+        "200":
+          description: success to login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
       requestBody:
         content:
           application/json:
