@@ -554,7 +554,10 @@ paths:
         content:
           application/json:
             schema:
-              type: string
+              type: object
+              properties:
+                nickname:
+                  type: string
     delete:
       tags:
         - user
