@@ -345,6 +345,10 @@ paths:
             schema:
               type: object
               properties:
+                book:
+                  $ref: "#/components/schemas/Book"
+                image:
+                  type: string
                 quote:
                   type: string
                 content:
