@@ -4,7 +4,7 @@ info:
   description: This is BSN project.
   version: 1.0.0
 servers:
-  - url: http://localhost:3000
+  - url: http://13.124.63.103/api
 tags:
   - name: book
     description: Everybook which have ISBN
