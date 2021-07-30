@@ -61,7 +61,7 @@ components:
     Book:
       type: object
       properties:
-        isbn:
+        _id:
           type: integer
           format: int64
         title:
