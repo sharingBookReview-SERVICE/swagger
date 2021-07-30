@@ -192,12 +192,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Book"
-  /reviews:
+  /feeds:
     get:
-      summary: get all reviews
+      summary: get all feedes
       description: do not need request
       tags:
-        - review
+        - feed
       responses:
         "200":
           description: response 값
