@@ -40,7 +40,7 @@ components:
     Comment:
       type: object
       properties:
-        user:
+        userId:
           $ref: "#/components/schemas/User"
         content:
           type: string
