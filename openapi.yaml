@@ -138,6 +138,7 @@ paths:
           description: what kind of search target
           schema:
             type: string
+            enum: [title, author, isbn]
         - name: query
           in: query
           required: true
