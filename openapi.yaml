@@ -287,6 +287,8 @@ paths:
                   type: array
                   items:
                     type: string
+                image:
+                  type: string
     delete:
       summary: delete one review
       description: request data using bookId, reviewId
@@ -339,8 +341,8 @@ paths:
             schema:
               type: object
               properties:
-                book:
-                  $ref: "#/components/schemas/Book"
+                bookId:
+                  type: string
                 image:
                   type: string
                 quote:
