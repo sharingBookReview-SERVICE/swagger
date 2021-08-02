@@ -138,6 +138,7 @@ paths:
           description: what kind of search target
           schema:
             type: string
+            enum: [title, author, isbn]
         - name: query
           in: query
           required: true
@@ -353,6 +354,13 @@ paths:
                   type: array
                   items:
                     type: string
+            example:
+              bookId: '9788950987749'
+              image: 'http://sample.com'
+              quote: 'Sample quote'
+              content: 'Review Content'
+              hashtags: ['tagA', 'tagB', 'tagC']
+
   /books/{bookId}/reviews/{reviewId}/like:
     put:
       summary: change review property myLike and likes
