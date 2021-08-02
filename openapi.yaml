@@ -27,6 +27,9 @@ components:
     User:
       type: object
       properties:
+        _id:
+          type: integer
+          format: int64
         nickname:
           type: string
         providerKey:
@@ -34,30 +37,40 @@ components:
         provider:
           type: string
       example:
-        nickname: "James"
-        providerKey: "1234567890"
-        provider: "kakao"
+        _id: 61075765a1a5125bc82bbbb2
+        provider: kakao
+        providerKey: "1813460438"
+        nickname: 나그네123
     Comment:
-      type: object
-      properties:
-        userId:
-          $ref: "#/components/schemas/User"
-        content:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-          readOnly: true
-      example:
-        user: "123456789"
-        content: "하하하 너무 재밌다."
-        created_at: "20210727"
-    Book:
       type: object
       properties:
         _id:
           type: integer
           format: int64
+        content:
+          type: string
+        user:
+          type: integer
+          format: int64        
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      example:
+        _id: 61075765a1a5125bc82bbbv3
+        content: 하하하 너무 재밌다.
+        user: dfsao234
+        created_at: "2021-08-02T05:02:11.135Z"
+    Book:
+      type: object
+      properties:       
+        reviews:
+          type: array
+          items:
+            type: integer
+            format: int64
+        _id:
+          type: integer
         title:
           type: string
         link:
@@ -68,64 +81,73 @@ components:
           type: string
         price:
           type: integer
-        discout:
+        discount:
           type: integer
-        description:
+        publisher:
           type: string
         pubdate:
           type: string
           format: date
-      example:
-        isbn: "9791158392239"
-        title: "모던 자바스크립트 Deep Dive"
-        link: "http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158392239&orderClick=LAG&Kc="
-        image: "http://image.kyobobook.co.kr/images/book/large/239/l9791158392239.jpg"
-        author: "이웅모"
-        price: "45000"
-        discount: "0.1"
+          readOnly: true
+        description:
+          type: string        
+      example:        
+        reviews: ["61056b9ad32a2e1895c2e677","61056dfdd190b51af3f06ab3"]
+        _id: 9791158392239
+        title: 모던 자바스크립트 Deep Dive
+        link: http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9791158392239&orderClick=LAG&Kc=
+        image: http://image.kyobobook.co.kr/images/book/large/239/l9791158392239.jpg
+        author: 이웅모
+        price: 45000
+        discount: 0.1
+        publisher: 비룡소
+        pubdate: "20210120"
         description: "269개의 그림과 원리를 파헤치는 설명으로 ‘자바스크립트의 기본 개념과 동작 원리’를 이해하자!\n 웹페이지의 단순한 보조 기능을 처리하기 위한 제한적인 용도로 태어난 자바스크립트는 과도하다고 느껴질 만큼 친절한 프로그래밍 언어입니다. 이러한 자바스크립트의 특징은 편리한 경우도 있지만 내부 동작을 이해하기 어렵게 만들기도 합니다."
-        pubdate: "20200925"
     Review:
       type: object
       properties:
-        id:
+        _id:
           type: integer
-        user:
-          $ref: "#/components/schemas/User"
-        book:
-          $ref: "#/components/schemas/Book"
-        quote:
-          type: string
-        content:
-          type: string
+          format: int64
         hashtags:
           type: array
           items:
             type: string
-        created_at:
-          type: string
-          format: date-time
-        comments:
-          type: array
-          items:
-            $ref: "#/components/schemas/Comment"
         liked_users:
           type: array
           items:
-            $ref: "#/components/schemas/User"
+            type: string
+            format: int64
+        quote:
+          type: string
+        content:
+          type: string
         image:
           type: string
+        book:
+          type : integer
+        user:
+          type: integer
+          format: int64
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"        
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
       example:
-        id: "12345"
-        user: "23456"
-        book: "34567"
-        qutoe: "시간이 쏜살같다고 하는데 당신 시계엔 화살이 없소."
-        content: "너무너무 재밌다."
-        hashtags: ["재밌음", "우울함"]
-        created_at: "20210726"
-        comments: ["1234", "2345"]
-        liked_users: ["1324", "2435"]
-        image: ""
+        _id: "6107ad2f9d0ee58153aa1faf"
+        hashtags: ["경제", "내가 처음 읽은 책"]
+        liked_users: ["61075765a1a5125bc82bbbb2","61075765a1a5125bc82bbbv4"]
+        quote: 우린 언제나 할 수 있을거야.
+        content: 너무나 인상깊은 책 이였습니다. 다시 읽고 싶은 책이네요
+        image: https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20150629_194%2Ftotobook9_1435557042721NTwQG_JPEG%2F%25BC%25F6%25B9%25DA%25BE%25BE-%2528%25C0%25D4%25C3%25BC%25C7%25A5%25C1%25F6%2529.jpg&type=sc960_832
+        book: 9788949152516
+        user: 61075765a1a5125bc82bbbb2
+        comments: [{id : 6107a92e9d0ee58153aa1fa8, content : 최고의책입니다!, user: 61075765a1a5125bc82bbbb2, created_at: "2021-08-02T05:02:11.135Z"}, {id : 6107a92e9d0ee58153aa1fa8, content : 최고의책입니다!, user: 61075765a1a5125bc82bbbb2, created_at: "2021-08-02T05:02:11.135Z"}]
+        created_at: "2021-08-02T05:02:11.135Z"
 paths:
   /books:
     get:
@@ -138,7 +160,6 @@ paths:
           description: what kind of search target
           schema:
             type: string
-            enum: [title, author, isbn]
         - name: query
           in: query
           required: true
@@ -153,7 +174,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Book"
+                type: array
+                
   /books/{bookId}:
     get:
       summary: get book for bookdetail
