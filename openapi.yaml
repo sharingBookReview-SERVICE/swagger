@@ -200,9 +200,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Review"
-  /books/bookId/reviews:
+  /books/{bookId}/reviews:
     get:
-      summary: get reviews which book have
+      summary: Get reviews of a book
       description: request data using bookId
       tags:
         - review
@@ -221,6 +221,50 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Review"
+    post:
+      summary: post the review
+      description: request data using bookId
+      tags:
+        - review
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Success
+        "400":
+          description: Invalid ID Supplied
+        "405":
+          description: Invalid input
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookId:
+                  type: string
+                image:
+                  type: string
+                quote:
+                  type: string
+                content:
+                  type: string
+                hashtags:
+                  type: array
+                  items:
+                    type: string
+            example:
+              bookId: '9788950987749'
+              image: 'http://sample.com'
+              quote: 'Sample quote'
+              content: 'Review Content'
+              hashtags: [ 'tagA', 'tagB', 'tagC' ]
   /books/{bookId}/reviews/{reviewId}:
     get:
       summary: get one review for review detail
@@ -315,52 +359,6 @@ paths:
           description: Invalid Id Supplied
         "404":
           description: Review not found
-  /books/{bookId}/reviews:
-    post:
-      summary: post the review
-      description: request data using bookId
-      tags:
-        - review
-      parameters:
-        - name: bookId
-          in: path
-          required: true
-          description: The Id of book which review have
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: Success
-        "400":
-          description: Invalid ID Supplied
-        "405":
-          description: Invalid input
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                bookId:
-                  type: string
-                image:
-                  type: string
-                quote:
-                  type: string
-                content:
-                  type: string
-                hashtags:
-                  type: array
-                  items:
-                    type: string
-            example:
-              bookId: '9788950987749'
-              image: 'http://sample.com'
-              quote: 'Sample quote'
-              content: 'Review Content'
-              hashtags: ['tagA', 'tagB', 'tagC']
-
   /books/{bookId}/reviews/{reviewId}/like:
     put:
       summary: change review property myLike and likes
