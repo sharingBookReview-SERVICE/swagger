@@ -359,10 +359,10 @@ paths:
           description: Invalid Id Supplied
         "404":
           description: Review not found
-  /books/{bookId}/reviews/{reviewId}/like:
+  /books/{bookId}/reviews/{reviewId}/likes:
     put:
-      summary: change review property myLike and likes
-      description: request data using bookId, reviewId
+      summary: Like or unlike a review
+      description: Push into liked_users property or pull out of it.
       tags:
         - review
       parameters:
@@ -381,20 +381,16 @@ paths:
             type: integer
             format: int64
       responses:
+        "200":
+          description: Like success
+          content:
+            application/json:
+              example:
+                result: '좋아요를 성공했습니다.'
         "400":
           description: Invalid Id Supplied
         "404":
           description: Review not found
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                liked_users:
-                  type: array
-                  items:
-                    type: string
   /books/{bookId}/reviews/{reviewId}/comments:
     post:
       summary: Create a book comment.
