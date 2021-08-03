@@ -387,6 +387,9 @@ paths:
           schema:
             type: integer
             format: int64
+      security:
+        - bearerAuth:
+          - 'authorization'
       responses:
         "200":
           description: Success
@@ -465,6 +468,9 @@ paths:
           schema:
             type: integer
             format: int64
+      security:
+        - bearerAuth:
+          - 'authorization'
       responses:
         "400":
           description: Invalid Id Supplied
@@ -511,6 +517,9 @@ paths:
           schema:
             type: integer
             format: int64
+      security:
+        - bearerAuth:
+          - 'authorization'
       responses:
         "400":
           description: Invalid Id Supplied
@@ -548,6 +557,9 @@ paths:
           description: Invalid Id Supplied
         "404":
           description: Review not found
+      security:
+        - bearerAuth:
+          - 'authorization'
   /books/{bookId}/reviews/{reviewId}/comments:
     post:
       summary: Create a book comment.
@@ -581,7 +593,10 @@ paths:
                 content:
                   type: string 
             example:
-              content: 너무너무 좋아요!               
+              content: 너무너무 좋아요!
+      security:
+        - bearerAuth:
+          - 'authorization'       
   /books/{bookId}/reviews/{reviewId}/comments/{commentId}:
     patch:
       summary: modify comment.
@@ -623,6 +638,9 @@ paths:
                   type: string
             example:
               content: 너무너무 좋아요!
+      security:
+        - bearerAuth:
+          - 'authorization'
     delete:
       summary: modify comment.
       description: request bookId, reviewId,commentId.
@@ -653,6 +671,9 @@ paths:
       responses:
         "200":
           description: response success.
+      security:
+        - bearerAuth:
+          - 'authorization'
   /users/{provider}:
     post:
       tags:
@@ -757,3 +778,6 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Review"
+      security:
+        - bearerAuth:
+          - 'authorization'
