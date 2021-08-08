@@ -90,7 +90,11 @@ components:
           format: date
           readOnly: true
         description:
-          type: string        
+          type: string
+        topTags:
+          type: array
+          items:
+            type: string
       example:        
         reviews: ["61056b9ad32a2e1895c2e677","61056dfdd190b51af3f06ab3"]
         _id: 9791158392239
@@ -103,6 +107,7 @@ components:
         publisher: 비룡소
         pubdate: "20210120"
         description: "269개의 그림과 원리를 파헤치는 설명으로 ‘자바스크립트의 기본 개념과 동작 원리’를 이해하자!\n 웹페이지의 단순한 보조 기능을 처리하기 위한 제한적인 용도로 태어난 자바스크립트는 과도하다고 느껴질 만큼 친절한 프로그래밍 언어입니다. 이러한 자바스크립트의 특징은 편리한 경우도 있지만 내부 동작을 이해하기 어렵게 만들기도 합니다."
+        topTags: ["기술", "자바스크립트"]
     Review:
       type: object
       properties:
@@ -125,7 +130,6 @@ components:
         image:
           type: string
         book:
-          type : integer
           $ref: "#/components/schemas/Book"
         user:
           type: integer
@@ -351,7 +355,6 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
                   $ref: "#/components/schemas/Review"
   /books/{bookId}/reviews:
     get:
