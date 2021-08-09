@@ -455,8 +455,14 @@ paths:
           description: Like success
           content:
             application/json:
-              example:
-                result: '좋아요를 성공했습니다.'
+              schema:
+                type: object
+                properties:
+                  review:
+                    $ref: "#/components/schemas/Review"
+                  result:
+                    type: string
+                    example: "like / unlike"
         "400":
           description: Invalid Id Supplied
         "404":
