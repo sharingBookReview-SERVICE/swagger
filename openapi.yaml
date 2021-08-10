@@ -174,7 +174,35 @@ components:
         created_at: "2021-08-02T05:02:11.135Z"
         }]
         created_at: "2021-08-02T05:02:11.135Z"
-        
+    Collection:
+      type: object
+      properties:
+        _id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        type:
+          type: string
+          enum: [tag]
+        books:
+          type: array
+          items:
+            $ref: "#/components/schemas/Book"
+        user:
+          $ref: "#/components/schemas/User"
+        comments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
+        liked_users:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
 paths:
   /books:
     get:
