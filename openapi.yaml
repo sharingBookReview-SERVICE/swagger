@@ -208,6 +208,7 @@ components:
                 $ref: "#/components/schemas/Book"
               book_description:
                 type: string
+          maxItems: 10
         image:
           type: string
         description:
