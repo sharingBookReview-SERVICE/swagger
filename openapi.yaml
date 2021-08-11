@@ -837,7 +837,7 @@ paths:
         - bearerAuth:
           - 'authorization'
   /collections:
-    post:
+    put:
       summary: Create a Collection
       description: Creates a collection document with title, description, book infos and etc.
       tags:
