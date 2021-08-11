@@ -298,8 +298,13 @@ paths:
                   $ref: "#/components/schemas/Book"
   /feeds:
     get:
-      summary: get all feedes
-      description: do not need request
+      summary: Get feeds
+      description: Request 10 items right after lastItemId
+      parameters:
+        - in : query
+          name: lastItemId
+          schema:
+            type: string
       tags:
         - feed
       responses:
