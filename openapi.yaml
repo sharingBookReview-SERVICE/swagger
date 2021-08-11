@@ -192,13 +192,17 @@ components:
         _id:
           type: integer
           format: int64
+          readOnly: true
         name:
           type: string
         type:
           type: string
           enum: [tag, custom]
+          readOnly: true
         user:
-          $ref: "#/components/schemas/User"
+          readOnly: true
+          allOf:
+            - $ref: "#/components/schemas/User"
         contents:
           type: array
           items:
@@ -218,6 +222,7 @@ components:
           items:
             $ref: "#/components/schemas/Comment"
         liked_users:
+          readOnly: true
           type: array
           items:
             $ref: "#/components/schemas/User"
