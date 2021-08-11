@@ -36,11 +36,23 @@ components:
           type: string
         provider:
           type: string
+        level:
+          type: number
+        exp:
+          type: number
+        followingCount:
+          type: integer
+        followerCount:
+          type: integer
       example:
         _id: 61075765a1a5125bc82bbbb2
         provider: kakao
         providerKey: "1813460438"
         nickname: 나그네123
+        level: 4
+        exp: 22
+        followingCount: 7
+        followerCount: 11
     Comment:
       type: object
       properties:
@@ -199,6 +211,20 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/User"
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    Follow:
+      type: object
+      properties:
+        _id:
+          type: integer
+          format: int64
+        followee:
+          $ref: "#/components/schemas/User"
+        follower:
+          $ref: "#/components/schemas/User"
         created_at:
           type: string
           format: date-time
@@ -719,3 +745,75 @@ paths:
       security:
         - bearerAuth:
           - 'authorization'
+  /follow/followingList:
+    get:
+        summary: Get user's following list
+        description: Returns a list of following
+        tags:
+          - follow
+        responses:
+          "200":
+            description: response success.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Follow"
+                example:
+                  _id: '6107ad2f9d0ee58153aa1faf'
+                  level: 3
+                  nickname: '나그네'
+        security:
+          - bearerAuth:
+            - 'authorization'
+  /follow/followerList:
+    get:
+        summary: Get user's follower list
+        description: Returns a list of follower
+        tags:
+          - follow
+        responses:
+          "200":
+            description: response success.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Follow"
+                example:
+                  _id: '6107ad2f9d0ee58153aa1faf'
+                  level: 3
+                  nickname: '나그네'
+        security:
+          - bearerAuth:
+            - 'authorization'
+  /follow/{userId}:
+    post:
+      summary: switch follow
+      description: request userId of followee
+      tags:
+        - follow
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The Id of followee
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Created Success
+          content:
+            application/json:
+                schema:
+                  type: object
+                  properties:
+                    status:
+                      type: boolean                
+      security:
+        - bearerAuth:
+          - 'authorization'       
+
