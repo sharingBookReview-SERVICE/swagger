@@ -209,7 +209,13 @@ components:
             type: object
             properties:
               book:
-                $ref: "#/components/schemas/Book"
+                readOnly: true
+                oneOf:
+                  - $ref: "#/components/schemas/Book"
+              isbn:
+                type: string
+                description: A book's isbn.
+                writeOnly: true
               book_description:
                 type: string
           maxItems: 10
