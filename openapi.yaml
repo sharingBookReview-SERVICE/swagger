@@ -861,3 +861,32 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Collection"
+    get:
+      summary: Get array of collections
+      description: Returns collections based on query
+      tags:
+        - Collection
+      parameters:
+        - in: query
+          name: name
+          schema:
+            type: string
+          description: Name of Collection. Optional.
+        - in: query
+          name: type
+          schema:
+            type: string
+            enum: [tag, custom, best, genre]
+          description: Type of collection. Optional.
+      responses:
+        "200":
+          description: Get success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  collections:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Collection"
