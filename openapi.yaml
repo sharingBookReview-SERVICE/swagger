@@ -197,7 +197,7 @@ components:
           type: string
         type:
           type: string
-          enum: [tag, custom]
+          enum: [tag, custom, best, genre]
           readOnly: true
         user:
           readOnly: true
