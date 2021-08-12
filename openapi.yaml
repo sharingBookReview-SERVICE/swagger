@@ -44,6 +44,14 @@ components:
           type: integer
         followerCount:
           type: integer
+        profileImage:
+          type: string
+        own_image:
+          type: array
+          items:
+            type: string
+        treasure:
+          type: boolean
       example:
         _id: 61075765a1a5125bc82bbbb2
         provider: kakao
@@ -53,6 +61,9 @@ components:
         exp: 22
         followingCount: 7
         followerCount: 11
+        profileImage: image_1
+        own_image: [image_2, image_3]
+        treasure: true
     Comment:
       type: object
       properties:
@@ -378,6 +389,15 @@ paths:
       responses:
         "200":
           description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  review:
+                    $ref: "#/components/schemas/Review"
+                  treasure:
+                    type: boolean
         "400":
           description: Invalid ID Supplied
         "405":
@@ -541,6 +561,8 @@ paths:
                 properties:
                   review:
                     $ref: "#/components/schemas/Review"
+                  treasure:
+                    type: boolean
                   result:
                     type: string
                     example: "like / unlike"
@@ -575,6 +597,15 @@ paths:
       responses:
         "201":
           description: Created Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comment:
+                    $ref: "#/components/schemas/Comment"
+                  treasure:
+                    type: boolean
       requestBody:
         content:
           application/json:
@@ -840,10 +871,36 @@ paths:
                   properties:
                     status:
                       type: boolean
+                    treasure:
+                      type: boolean
       security:
         - bearerAuth:
           - 'authorization'
   /collections:
+    post:
+      summary: Create a Collection
+      description: Creates a collection document with title, description, book infos and etc.
+      tags:
+        - Collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Collection"
+      responses:
+        "201":
+          description: Created Success
+          content:
+            application/json:
+              schema:
+                  type: object
+                  properties:
+                    collection:
+                      $ref: "#/components/schemas/Collection"
+                    treasure:
+                      type: boolean
+                
+              
     put:
       summary: Create a Collection
       description: Creates a collection document with title, description, book infos and etc.
