@@ -783,29 +783,35 @@ paths:
       responses:
         "200":
           description: success
-  /users/{userId}/reviews:
+  /users/{userId}/feeds:
     get:
-      summary: Get user's reviews.
-      description: Returns a list of reviews written by the user.
+      summary: Get user's reviews and collections.
+      description: Returns array of reviews and collections written by the user.
       tags:
         - user
       parameters:
         - name: userId
           in: path
           required: true
-          description: User's ID
           schema:
             type: integer
             format: int64
       responses:
         "200":
-          description: response success.
+          description: Get success.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/Review"
+                type: object
+                properties:
+                  reviews:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Review"
+                  collections:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/Collection"
       security:
         - bearerAuth:
           - 'authorization'
