@@ -939,25 +939,6 @@ paths:
                       $ref: "#/components/schemas/Collection"
                     treasure:
                       type: boolean
-                
-              
-    put:
-      summary: Create a Collection
-      description: Creates a collection document with title, description, book infos and etc.
-      tags:
-        - Collection
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Collection"
-      responses:
-        "201":
-          description: Created Success
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Collection"
     get:
       summary: Get array of collections
       description: Returns collections based on query
@@ -987,3 +968,48 @@ paths:
                     type: array
                     items:
                       $ref: "#/components/schemas/Collection"
+  /collections/{collectionId}:
+    parameters:
+      - in: path
+        name: collectionId
+        required: true
+        schema:
+          type: integer
+          format: int64
+    get:
+      summary: Get a collection
+      description: Returns a collection of matching ID.
+      tags:
+        - Collection
+      responses:
+        "200":
+          description: Get success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Collection"
+    put:
+      summary: Update a collectoin
+      description: Updates a collection document.
+      tags:
+        - Collection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Collection"
+      responses:
+        "201":
+          description: Update success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Collection"
+    delete:
+      summary: Delete a collection
+      description: Deletes a collection document.
+      tags:
+        - Collection
+      responses:
+        "204":
+          description: Delete success
