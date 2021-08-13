@@ -750,17 +750,23 @@ paths:
           schema:
             type: integer
             format: int64
-      responses:
-        "200":
-          description: success
       requestBody:
         content:
           application/json:
             schema:
               type: object
               properties:
-                nickname:
+                profileImage:
                   type: string
+      responses:
+        "200":
+          description: response success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
     delete:
       tags:
         - user
@@ -800,6 +806,40 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Review"
+      security:
+        - bearerAuth:
+          - 'authorization'
+  /users/profile/{userId}:
+    put:
+      summary: receive profile image.
+      description: Returns a list of reviews written by the user.
+      tags:
+        - user
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: User's ID
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageName:
+                  type: string
+      responses:
+        "200":
+          description: response success.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
       security:
         - bearerAuth:
           - 'authorization'
