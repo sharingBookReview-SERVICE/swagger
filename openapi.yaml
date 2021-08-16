@@ -146,6 +146,9 @@ components:
           items:
             type: string
             format: int64
+        likeCount:
+          type: integer
+          readOnly: true
         quote:
           type: string
         content:
@@ -169,6 +172,7 @@ components:
         _id: "6107ad2f9d0ee58153aa1faf"
         hashtags: ["경제", "내가 처음 읽은 책"]
         liked_users: ["61075765a1a5125bc82bbbb2","61075765a1a5125bc82bbbv4"]
+        likeCount: 2
         quote: 우린 언제나 할 수 있을거야.
         content: 너무나 인상깊은 책 이였습니다. 다시 읽고 싶은 책이네요
         image: https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20150629_194%2Ftotobook9_1435557042721NTwQG_JPEG%2F%25BC%25F6%25B9%25DA%25BE%25BE-%2528%25C0%25D4%25C3%25BC%25C7%25A5%25C1%25F6%2529.jpg&type=sc960_832
