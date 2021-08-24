@@ -336,17 +336,12 @@ paths:
   /feeds:
     get:
       summary: Get feeds
-      description: Request 10 items right after lastItemId
-      parameters:
-        - in : query
-          name: lastItemId
-          schema:
-            type: string
+      description: Returns maximum 10 recent, unread and followed reviews. If no such reviews are left, returns maximum 10 recent and unread reviews written by any user.
       tags:
         - feed
       responses:
         "200":
-          description: response 값
+          description: OK
           content:
             application/json:
               schema:
