@@ -353,6 +353,23 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Review"
+  /feeds/{reviewId}:
+    patch:
+      summary: Mark review as read
+      description: Push given review ID to user's read_reviews array to mark it as read.
+      parameters:
+        - in: path
+          name: reviewId
+          required: true
+          description: Review ID that user has read.
+          schema:
+            type: integer
+            format: int64
+      tags:
+        - feed
+      responses:
+        "204":
+          description: Update succuess
   /books/{bookId}/reviews:
     get:
       summary: Get reviews of a book
