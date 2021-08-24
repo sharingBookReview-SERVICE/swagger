@@ -52,6 +52,17 @@ components:
             type: string
         treasure:
           type: boolean
+        read_reviews:
+          type: array
+          items:
+            type: object
+            properties:
+              reviewId:
+                type: integer
+                format: int64
+              created_at:
+                type: string
+                format: date
       example:
         _id: 61075765a1a5125bc82bbbb2
         provider: kakao
