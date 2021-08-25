@@ -1046,3 +1046,23 @@ paths:
       responses:
         "204":
           description: Delete success
+  /search:
+    parameters:
+      - name: tag
+        in: query
+        required: true
+        description: name of tag
+        schema:
+          type: string
+    get:
+      summary: Get a tag search list
+      description: Returns a collection of matching tag
+      tags:
+        - search
+      responses:
+        "200":
+          description: Get success
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Collection"
