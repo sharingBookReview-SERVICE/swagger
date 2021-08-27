@@ -52,6 +52,14 @@ components:
             type: string
         treasure:
           type: boolean
+        bookmark_reviews:
+          type: array
+          items:
+            type: object
+            properties:
+              reviewId:
+                type: integer
+                format: int64
         read_reviews:
           type: array
           items:
@@ -600,6 +608,44 @@ paths:
       security:
         - bearerAuth:
           - 'authorization'
+  /books/{bookId}/reviews/{reviewId}/bookmark:
+    put:
+      summary: add bookmark in user
+      description: request data using bookId, reviewId
+      tags:
+        - review
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          description: The Id of book which review have
+          schema:
+            type: integer
+            format: int64
+        - name: reviewId
+          in: path
+          required: true
+          description: The Id of review which review have
+          schema:
+            type: integer
+            format: int64
+      security:
+        - bearerAuth:
+          - 'authorization'
+      responses:
+        "200":
+          description: Created Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+        "400":
+          description: Invalid Id Supplied
+        "404":
+          description: Review not found
   /books/{bookId}/reviews/{reviewId}/comments:
     post:
       summary: Create a book comment.
